@@ -1,0 +1,67 @@
+@baseUrl = http://localhost:8080/api
+
+### Lister les terrains
+GET {{baseUrl}}/terrains
+
+### Créneaux du terrain 1
+GET {{baseUrl}}/terrains/1/creneaux?date=2026-10-30
+
+### Réserver un créneau
+POST {{baseUrl}}/reservations
+Content-Type: application/json
+
+{
+  "terrainId": 1,
+  "date": "2026-10-30",
+  "heureDebut": "18:00",
+  "nomClient": "Ramzy"
+}
+
+### Consulter une réservation (remplace l'id par celui renvoyé)
+GET {{baseUrl}}/reservations/2
+
+### Annuler une réservation (remplace l'id par celui renvoyé)
+DELETE {{baseUrl}}/reservations/2
+
+### Erreur 400 : champs manquants ou vides
+POST {{baseUrl}}/reservations
+Content-Type: application/json
+
+{
+  "terrainId": 1,
+  "date": "2026-10-30",
+  "nomClient": ""
+}
+
+### Erreur 400 : hors des horaires d'ouverture
+POST {{baseUrl}}/reservations
+Content-Type: application/json
+
+{
+  "terrainId": 1,
+  "date": "2026-10-30",
+  "heureDebut": "23:00",
+  "nomClient": "Ramzy"
+}
+
+### Erreur 400 : créneau passé
+POST {{baseUrl}}/reservations
+Content-Type: application/json
+
+{
+  "terrainId": 1,
+  "date": "2026-10-01",
+  "heureDebut": "18:00",
+  "nomClient": "Ramzy"
+}
+
+### Erreur 404 : terrain inexistant
+POST {{baseUrl}}/reservations
+Content-Type: application/json
+
+{
+  "terrainId": 999,
+  "date": "2026-10-30",
+  "heureDebut": "18:00",
+  "nomClient": "Ramzy"
+}

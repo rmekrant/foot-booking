@@ -17,4 +17,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
             """)
     List<LocalTime> findHeuresReservees(@Param("terrainId") Long terrainId,
                                         @Param("date") LocalDate date);
+
+    boolean existsByTerrainIdAndDateReservationAndHeureDebut(Long terrainId, LocalDate date, LocalTime heureDebut);
 }

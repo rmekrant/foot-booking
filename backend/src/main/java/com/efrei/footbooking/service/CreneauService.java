@@ -57,4 +57,19 @@ public class CreneauService {
         }
         return creneaux;
     }
+
+    /**
+     * Vérifie qu'une heure correspond au début d'un créneau existant
+     * (entre l'ouverture et la fermeture, et alignée sur la durée d'un créneau).
+     */
+    public static boolean estUnDebutDeCreneau(LocalTime heure) {
+        LocalTime dernierDebut = HEURE_FERMETURE.minus(DUREE_CRENEAU);
+        if (heure.isBefore(HEURE_OUVERTURE) || heure.isAfter(dernierDebut)) {
+            return false;
+        }
+        long minutesDepuisOuverture = Duration.between(HEURE_OUVERTURE, heure).toMinutes();
+        return minutesDepuisOuverture % DUREE_CRENEAU.toMinutes() == 0
+                && heure.getSecond() == 0
+                && heure.getNano() == 0;
+    }
 }
