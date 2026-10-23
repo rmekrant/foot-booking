@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: footbooking
+  datasource:
+    url: jdbc:postgresql://localhost:55432/footbooking
+    username: footbooking
+    password: footbooking
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
