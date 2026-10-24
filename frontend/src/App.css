@@ -1,0 +1,106 @@
+:root {
+  --vert: #15803d;
+  --vert-fonce: #166534;
+  --vert-clair: #dcfce7;
+  --rouge: #b91c1c;
+  --rouge-clair: #fee2e2;
+  --gris: #6b7280;
+  --gris-clair: #f3f4f6;
+  --bordure: #e5e7eb;
+  --texte: #111827;
+  --fond: #f9fafb;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: var(--texte);
+  background: var(--fond);
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+button, input { font: inherit; }
+
+.page { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
+
+.entete h1 { margin: 0; color: var(--vert-fonce); }
+.entete p { margin: 4px 0 24px; color: var(--gris); }
+
+.contenu { display: grid; grid-template-columns: 1fr 1.6fr; gap: 20px; align-items: start; }
+@media (max-width: 800px) { .contenu { grid-template-columns: 1fr; } }
+
+.carte { background: white; border: 1px solid var(--bordure); border-radius: 12px; padding: 20px; }
+.carte h2 { margin: 0 0 16px; font-size: 1.1rem; }
+
+.aide, .vide { color: var(--gris); margin: 8px 0; }
+
+/* Terrains */
+.terrains { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.terrain {
+  width: 100%; text-align: left; cursor: pointer;
+  display: grid; grid-template-columns: 1fr auto; gap: 2px 8px;
+  padding: 12px 14px; background: white;
+  border: 1px solid var(--bordure); border-radius: 10px;
+  transition: border-color .15s, background .15s;
+}
+.terrain:hover { border-color: var(--vert); }
+.terrain.selectionne { border-color: var(--vert); background: var(--vert-clair); }
+.terrain-nom { font-weight: 600; }
+.terrain-adresse { grid-column: 1; color: var(--gris); font-size: .9rem; }
+.badge {
+  grid-column: 2; grid-row: 1 / span 2; align-self: center;
+  font-size: .8rem; padding: 3px 8px; border-radius: 999px;
+  background: var(--gris-clair); color: var(--texte);
+}
+
+/* Date */
+.champ-date { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; font-weight: 600; }
+.champ-date input { padding: 6px 10px; border: 1px solid var(--bordure); border-radius: 8px; }
+
+/* Créneaux */
+.creneaux { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
+.creneau {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 10px 6px; border-radius: 8px; border: 1px solid var(--bordure);
+  background: white; cursor: pointer; transition: border-color .15s, background .15s;
+}
+.creneau-heure { font-weight: 600; font-size: .95rem; }
+.creneau-statut { font-size: .8rem; }
+.creneau.disponible .creneau-statut { color: var(--vert); }
+.creneau.disponible:hover { border-color: var(--vert); }
+.creneau.selectionne { background: var(--vert); border-color: var(--vert); color: white; }
+.creneau.selectionne .creneau-statut { color: white; }
+.creneau.reserve { background: var(--rouge-clair); color: var(--rouge); cursor: not-allowed; }
+.creneau.passe { background: var(--gris-clair); color: var(--gris); cursor: not-allowed; text-decoration: line-through; }
+
+/* Formulaire */
+.formulaire { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--bordure); }
+.formulaire p { margin: 0 0 12px; }
+.formulaire label { display: block; font-weight: 600; margin-bottom: 6px; }
+.ligne { display: flex; gap: 8px; flex-wrap: wrap; }
+.ligne input { flex: 1; min-width: 180px; padding: 10px 12px; border: 1px solid var(--bordure); border-radius: 8px; }
+.principal {
+  padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer;
+  background: var(--vert); color: white; font-weight: 600;
+}
+.principal:hover:not(:disabled) { background: var(--vert-fonce); }
+.principal:disabled { opacity: .5; cursor: not-allowed; }
+
+/* Messages */
+.message { padding: 12px 16px; border-radius: 10px; margin-bottom: 20px; }
+.message.succes { background: var(--vert-clair); color: var(--vert-fonce); }
+.message.erreur { background: var(--rouge-clair); color: var(--rouge); }
+
+/* Mes réservations */
+.pleine-largeur { grid-column: 1 / -1; }
+.mes-reservations { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.ma-reservation {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap;
+  padding: 12px 14px; border: 1px solid var(--bordure); border-radius: 10px;
+}
+.ma-reservation div { display: flex; flex-direction: column; gap: 2px; }
+.ma-reservation-titre { font-weight: 600; }
+.ma-reservation-detail { color: var(--gris); font-size: .9rem; }
+.secondaire {
+  padding: 8px 14px; border-radius: 8px; cursor: pointer; font-weight: 600;
+  background: white; color: var(--rouge); border: 1px solid var(--rouge);
+}
+.secondaire:hover:not(:disabled) { background: var(--rouge-clair); }
+.secondaire:disabled { opacity: .5; cursor: not-allowed; }
