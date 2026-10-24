@@ -167,4 +167,4 @@ La version 1 ne gère pas de comptes utilisateurs : « Mes réservations » est 
 
 ## Auteur
 
-**Ramzi MEKRANTER** – étudiant ingénieur à l'EFREI Paris, à la recherche d'une alternance en développement.
+**Ramzi MEKRANTER** – étudiant ingénieur à l'EFREI Paris, à la recherche d'une alternance.
